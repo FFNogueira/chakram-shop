@@ -4,13 +4,13 @@ import styled from 'styled-components';
 // Estilizando um parágrafo:
 // A constante exportada deve começar com letra miúscula:
 export const Page = styled.section`
-  margin: 30px auto;
+  margin: 20px auto 0 auto;
   max-width: 900px;
 
   .categories {
     display: grid;
     padding-bottom: 20px;
-    margin-top: 40px;
+
     grid-template-columns: 1fr 1fr;
     gap: 5px;
     grid-template-areas:

@@ -7,12 +7,15 @@ import { ToastContainer, Slide } from 'react-toastify';
 import GlobalStyle from './styles/GlobalStyle';
 // importa minhas rotas de páginas:
 import MyRoutes from './routes';
+// importa a Navbar:
+import Navbar from './components/Navbar';
 
 function App() {
   // Executa sempre que o componente é renderizado:
 
   return (
     <BrowserRouter>
+      <Navbar />
       <MyRoutes />
       <GlobalStyle />
       <ToastContainer

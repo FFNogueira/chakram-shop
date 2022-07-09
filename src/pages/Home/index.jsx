@@ -4,7 +4,6 @@ import React from 'react';
 import { Page } from './styled';
 // Componentes desta Página:
 import Category from '../../components/category';
-import Logo from '../../components/Logo';
 
 function Home() {
   const categories = [
@@ -41,7 +40,6 @@ function Home() {
 
   return (
     <Page>
-      <Logo />
       <div className="categories">
         {categories.map((properties) => {
           return <Category key={properties.name} properties={properties} />;
