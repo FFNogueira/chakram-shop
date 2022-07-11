@@ -13,17 +13,15 @@ export const NavContainer = styled.div`
   .logo {
     margin: 0 auto 0 0;
     .logo-icon {
-      width: 55px;
-      height: 55px;
-
-      path {
-        transition: fill 200ms ease-in-out;
-      }
+      width: 60px;
+      height: 60px;
+      transition: color 200ms ease-in-out;
+      color: black;
     }
 
     &:hover {
-      .logo-icon path {
-        fill: floralwhite;
+      .logo-icon {
+        color: floralwhite;
       }
     }
   }

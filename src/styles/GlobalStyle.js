@@ -17,13 +17,9 @@ export default createGlobalStyle`
    }
 
   body{
-     font-family: 'Quicksand', 'Open Sans', 'Helvetica Neue', sans-serif;
+     font-family: 'Quicksand', 'Open Sans', sans-serif;
      background:linear-gradient(90deg, rgba(177,193,249,1) 0%, rgba(206,239,246,1) 50%, rgba(221,244,245,1) 100%);
     }
-
-   svg {
-     pointer-events: none;
-   }
 
    a {
      text-decoration: none;

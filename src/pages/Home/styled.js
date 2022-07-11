@@ -4,7 +4,7 @@ import styled from 'styled-components';
 // Estilizando um parágrafo:
 // A constante exportada deve começar com letra miúscula:
 export const Page = styled.section`
-  margin: 20px auto 0 auto;
+  margin: 10px auto 0 auto;
   max-width: 900px;
 
   .categories {

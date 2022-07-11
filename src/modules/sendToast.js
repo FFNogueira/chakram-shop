@@ -8,11 +8,15 @@ export default function sendToast(type, message, autoClose = null) {
   // verifica o tipo de toast desejado:
   switch (type) {
     case 'error':
-      if (autoClose) { toast.error(message, { autoClose }); } else toast.error(message);
+      if (autoClose) {
+        toast.error(message, { autoClose });
+      } else toast.error(message);
       break;
 
     case 'success':
-      if (autoClose) { toast.success(message, { autoClose }); } else toast.success(message);
+      if (autoClose) {
+        toast.success(message, { autoClose });
+      } else toast.success(message);
       break;
 
     case 'loading':
@@ -20,11 +24,15 @@ export default function sendToast(type, message, autoClose = null) {
       break;
 
     case 'info':
-      if (autoClose) { toast.info(message, { autoClose }); } else toast.info(message);
+      if (autoClose) {
+        toast.info(message, { autoClose });
+      } else toast.info(message);
       break;
 
     case 'warning':
-      if (autoClose) { toast.warning(message, { autoClose }); } else toast.warning(message);
+      if (autoClose) {
+        toast.warning(message, { autoClose });
+      } else toast.warning(message);
       break;
 
     default:
