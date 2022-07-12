@@ -7,6 +7,8 @@ import {
   signInWithRedirect,
   signInWithPopup,
   GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
 } from 'firebase/auth';
 // importa os serviços da Firestore Database:
 // Firestore + referenciador de documentos (doc) + funções CRUD
@@ -25,8 +27,11 @@ import firebaseConfig from './firebaseConfig';
 // Inicializa e configura o Firebase:
 // =================================
 const firebaseApp = initializeApp(firebaseConfig);
-const provider = new GoogleAuthProvider();
-provider.setCustomParameters({
+// ===============================================
+// Configura o Provedor de autenticação via google:
+// ===============================================
+const googleProvider = new GoogleAuthProvider();
+googleProvider.setCustomParameters({
   prompt: 'select_account',
 });
 // =================================================
@@ -34,11 +39,31 @@ provider.setCustomParameters({
 // =================================================
 export const db = getFirestore();
 // ================================================
+// Exporta o serviço geral de autenticação/login...
+// ================================================
+export const auth = getAuth();
+// ================================================
 // Exporta o serviço de autenticação/login...
 // ...via conta do google (signInWithGooglePopup):
 // ================================================
-export const auth = getAuth();
-export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
+export const signInWithGooglePopup = () =>
+  signInWithPopup(auth, googleProvider);
+// ================================================
+// Exporta o serviço de autenticação/login...
+// ...via email + senha (signInWithEmail):
+// ================================================
+export const signInUsingEmailandPassword = async (_email, _password) => {
+  try {
+    const userData = await signInWithEmailAndPassword(auth, _email, _password);
+    return userData;
+  } catch (err) {
+    if (err.code?.indexOf('user-not-found') >= 0) {
+      return { errors: ['usuário não registrado!'] };
+    }
+    return { errors: ['e-mail/senha inválidos!'] };
+  }
+};
+
 // ====================================================
 // Exporta a função de inicialização de um documento...
 // ...na coleção "users" do banco de dados:
@@ -53,7 +78,7 @@ export async function createUserDocument(logedUser) {
     // ...então apenas retorne a referência do documento:
     if (userDoc.exists()) return docRef;
     // Se o usuário ainda não tem cadastro/documento...
-    // ...então crie um:
+    // ...então crie um com sua conta google:
     const { email, displayName, photoURL } = logedUser;
     const createdAt = new Date();
     await setDoc(docRef, { email, displayName, photoURL, createdAt });
