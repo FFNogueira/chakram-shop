@@ -36,12 +36,14 @@ function LoginForm() {
 
   const handleEmailAndPasswordLogin = async () => {
     try {
+      sendToast('loading', 'Logando...');
       // tenta fazer login usando email e senha:
       const loginData = await signInUsingEmailandPassword(email, password);
       // se houve algum erro:
       if (loginData.errors) sendToast('error', loginData.errors[0]);
       // Se deu tudo certo:
       else {
+        sendToast('success', 'Logado com sucesso!', 4000);
         // ::::::::::::::::::::::::::::::::::::::::::::::::
         // TODO: provavelmente redirecionar para outra página
         // :::::::::::::::::::::::::::::::::::::::::::::::::
@@ -54,7 +56,7 @@ function LoginForm() {
   // Executa sempre que o componente é renderizado:
   return (
     <FormContainer action="">
-      <p>Fazer login</p>
+      <p>Faça login</p>
       <label htmlFor="login-email">
         <input
           type="email"

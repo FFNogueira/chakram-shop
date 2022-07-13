@@ -11,11 +11,17 @@ function RegisterForm() {
   // variáveis de estado local:
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [username, setUsername] = React.useState('');
 
   const handleEmailAndPasswordRegister = async () => {
     try {
+      sendToast('loading', 'Registrando...');
       // tenta fazer login usando email e senha:
-      const registerData = await registerUsingEmailAndPassword(email, password);
+      const registerData = await registerUsingEmailAndPassword(
+        email,
+        password,
+        username,
+      );
       // se houve algum erro:
       if (registerData.errors?.length > 0) {
         // enviar toast com todos os erros!!
@@ -23,7 +29,11 @@ function RegisterForm() {
           'error',
           <>
             {registerData.errors.map((e) => {
-              return <p key={e}>{e}</p>;
+              return (
+                <p key={e}>
+                  <span>⇛</span> {e}
+                </p>
+              );
             })}
           </>,
         );
@@ -31,7 +41,7 @@ function RegisterForm() {
       // Se deu tudo certo:
       else {
         // tenta criar um novo documento na coleção "users":
-        const doc = await createUserDocument(registerData.user);
+        const doc = await createUserDocument(registerData.user, username);
         // se houve erros na etapa anterior:
         if (doc.errors) {
           sendToast('error', doc.errors[0]);
@@ -52,6 +62,16 @@ function RegisterForm() {
   return (
     <FormContainer action="">
       <p>Registre-se</p>
+      <label htmlFor="register-username">
+        <input
+          type="text"
+          id="register-username"
+          placeholder="Nome de usuário"
+          onChange={(e) => {
+            setUsername(e.currentTarget.value);
+          }}
+        />
+      </label>
       <label htmlFor="register-email">
         <input
           type="email"

@@ -1,6 +1,6 @@
 import isEmail from 'validator/lib/isEmail';
 
-export default function validations(email = '', password = '') {
+export default function validations(email = '', password = '', username = '') {
   const errors = [];
   const letras = 'abcdefghijklmnopqrstuvxyzABCDEFGHIJKLMNOPQRSTUVXYZ';
   const numeros = '0123456789';
@@ -67,7 +67,29 @@ export default function validations(email = '', password = '') {
 
     i -= 1;
   }
-  if (found) errors.push(`A senha informada possui caracteres inválidos`);
+  if (found) errors.push(`A senha informada possui caracteres inválidos!`);
+  // verifica se o username tem ao menos 6 caracteres:
+  if (password.length < 6)
+    errors.push('O nome de usuário deve ter ao menos 6 caracteres!');
+  // verifica se a senha só contem os números,símbolos e letras permitidos:
+  i = username.length - 1;
+  found = false;
+  while (i >= 0) {
+    if (
+      !(
+        simbolos.indexOf(username[i]) >= 0 ||
+        letras.indexOf(username[i]) >= 0 ||
+        numeros.indexOf(username[i]) >= 0
+      )
+    ) {
+      found = true;
+      break;
+    }
+
+    i -= 1;
+  }
+  if (found)
+    errors.push(`O nome de usuário informado possui caracteres inválidos!`);
   // retorna o array de erros:
   return errors;
 }

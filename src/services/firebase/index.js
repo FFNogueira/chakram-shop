@@ -70,9 +70,13 @@ export const signInUsingEmailandPassword = async (_email, _password) => {
 // Exporta o serviço de registro de usuário...
 // ...via email + senha (createUserWithEmailAndPassword):
 // ================================================
-export const registerUsingEmailAndPassword = async (_email, _password) => {
+export const registerUsingEmailAndPassword = async (
+  _email,
+  _password,
+  _username,
+) => {
   try {
-    const errors = validations(_email, _password);
+    const errors = validations(_email, _password, _username);
     if (errors.length > 0) return { errors };
     const userData = await createUserWithEmailAndPassword(
       auth,
@@ -92,7 +96,7 @@ export const registerUsingEmailAndPassword = async (_email, _password) => {
 // Exporta a função de inicialização de um documento...
 // ...na coleção "users" do banco de dados:
 // ====================================================
-export async function createUserDocument(logedUser) {
+export async function createUserDocument(logedUser, _username = null) {
   try {
     // tenta obter a referência ao documento relativo a 'uid' do usuário que logou:
     const docRef = doc(db, 'users', logedUser.uid);
@@ -105,7 +109,7 @@ export async function createUserDocument(logedUser) {
     // ...então crie um novo:
     let { displayName, photoURL } = logedUser;
     const { email } = logedUser;
-    if (!displayName) displayName = email;
+    if (!displayName) displayName = _username;
     if (!photoURL) photoURL = '';
     const createdAt = new Date();
     await setDoc(docRef, { email, displayName, photoURL, createdAt });

@@ -36,4 +36,16 @@ export default createGlobalStyle`
     font-size: 14px;
     font-weight: bold;
    }
+
+   .Toastify__toast--error{
+    p{
+      font-family: 'Open Sans', sans-serif;
+      font-size: 15px;
+      span{
+        color: #e74c3c;
+        font-weight: bold;
+      }
+    }
+   }
+
 `;
