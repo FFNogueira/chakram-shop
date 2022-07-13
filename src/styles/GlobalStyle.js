@@ -26,12 +26,14 @@ export default createGlobalStyle`
    }
 
    button{
+    font-family: 'Open Sans', sans-serif;
     transition: background-color 200ms ease-in-out;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     padding: 10px 15px;
     margin: 10px auto;
-    font-size: 16px;
+    font-size: 14px;
+    font-weight: bold;
    }
 `;

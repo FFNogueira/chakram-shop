@@ -22,6 +22,8 @@ import {
 } from 'firebase/firestore';
 // Configurações do meu cluster Firebase:
 import firebaseConfig from './firebaseConfig';
+// minhas validações de email e senha:
+import validations from '../../modules/validations';
 
 // =================================
 // Inicializa e configura o Firebase:
@@ -57,13 +59,35 @@ export const signInUsingEmailandPassword = async (_email, _password) => {
     const userData = await signInWithEmailAndPassword(auth, _email, _password);
     return userData;
   } catch (err) {
+    console.log(err);
     if (err.code?.indexOf('user-not-found') >= 0) {
       return { errors: ['usuário não registrado!'] };
     }
     return { errors: ['e-mail/senha inválidos!'] };
   }
 };
-
+// ================================================
+// Exporta o serviço de registro de usuário...
+// ...via email + senha (createUserWithEmailAndPassword):
+// ================================================
+export const registerUsingEmailAndPassword = async (_email, _password) => {
+  try {
+    const errors = validations(_email, _password);
+    if (errors.length > 0) return { errors };
+    const userData = await createUserWithEmailAndPassword(
+      auth,
+      _email,
+      _password,
+    );
+    return userData;
+  } catch (err) {
+    console.log(err);
+    if (err.code?.indexOf('email-already-in-use') >= 0) {
+      return { errors: ['este e-mail já está em uso!'] };
+    }
+    return { errors: ['Erro ao efetuar registro!'] };
+  }
+};
 // ====================================================
 // Exporta a função de inicialização de um documento...
 // ...na coleção "users" do banco de dados:
@@ -78,15 +102,18 @@ export async function createUserDocument(logedUser) {
     // ...então apenas retorne a referência do documento:
     if (userDoc.exists()) return docRef;
     // Se o usuário ainda não tem cadastro/documento...
-    // ...então crie um com sua conta google:
-    const { email, displayName, photoURL } = logedUser;
+    // ...então crie um novo:
+    let { displayName, photoURL } = logedUser;
+    const { email } = logedUser;
+    if (!displayName) displayName = email;
+    if (!photoURL) photoURL = '';
     const createdAt = new Date();
     await setDoc(docRef, { email, displayName, photoURL, createdAt });
     return docRef;
   } catch (err) {
     console.log('Erro em *createUserDocument*:', err); // debug
     return {
-      errors: ['Não foi possível verificar/criar o registro do usuário'],
+      errors: ['Erro ao verificar/criar o registro do usuário'],
     };
   }
 }

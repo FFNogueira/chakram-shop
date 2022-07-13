@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 // páginas:
 import Home from '../pages/Home';
-import SignIn from '../components/SignIn';
+import SignIn from '../pages/SignIn';
 import NotFound from '../pages/404';
 
 function MyRoutes() {

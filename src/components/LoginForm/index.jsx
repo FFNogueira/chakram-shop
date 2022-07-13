@@ -1,7 +1,6 @@
 import React from 'react';
 import { FaGoogle } from 'react-icons/fa';
-// estilo específico desta página:
-import { SignPage } from './style';
+import { FormContainer } from './style';
 import {
   signInWithGooglePopup,
   createUserDocument,
@@ -10,7 +9,7 @@ import {
 // mensageiro toastify:
 import sendToast from '../../modules/sendToast';
 
-function SignIn() {
+function LoginForm() {
   // variáveis de estado local:
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
@@ -41,6 +40,7 @@ function SignIn() {
       const loginData = await signInUsingEmailandPassword(email, password);
       // se houve algum erro:
       if (loginData.errors) sendToast('error', loginData.errors[0]);
+      // Se deu tudo certo:
       else {
         // ::::::::::::::::::::::::::::::::::::::::::::::::
         // TODO: provavelmente redirecionar para outra página
@@ -51,62 +51,48 @@ function SignIn() {
     }
   };
 
+  // Executa sempre que o componente é renderizado:
   return (
-    <SignPage>
-      <form action="" className="loginForm">
-        <p>Fazer login</p>
-        <label htmlFor="email">
-          <input
-            type="email"
-            id="email"
-            placeholder="e-mail"
-            onChange={(e) => {
-              setEmail(e.currentTarget.value);
-            }}
-          />
-        </label>
-        <label htmlFor="password">
-          <input
-            type="password"
-            id="password"
-            placeholder="password"
-            onChange={(e) => {
-              setPassword(e.currentTarget.value);
-            }}
-          />
-        </label>
-        <div className="button-login-container">
-          <button
-            type="button"
-            className="signWithGoogle"
-            onClick={handleGoogleLogin}
-          >
-            logar com <FaGoogle />
-          </button>
-          <button
-            type="button"
-            className="signWithEmailAndPassword"
-            onClick={handleEmailAndPasswordLogin}
-          >
-            logar com sua conta
-          </button>
-        </div>
-      </form>
-
-      <form action="" className="registerForm">
-        <p>Registre-se</p>
-        <label htmlFor="email2">
-          <input type="email" id="email2" placeholder="e-mail" />
-        </label>
-        <label htmlFor="password2">
-          <input type="password" id="password2" placeholder="password" />
-        </label>
-        <button type="button" className="register">
-          Registrar
+    <FormContainer action="">
+      <p>Fazer login</p>
+      <label htmlFor="login-email">
+        <input
+          type="email"
+          id="login-email"
+          placeholder="e-mail"
+          onChange={(e) => {
+            setEmail(e.currentTarget.value);
+          }}
+        />
+      </label>
+      <label htmlFor="login-password">
+        <input
+          type="password"
+          id="login-password"
+          placeholder="password"
+          onChange={(e) => {
+            setPassword(e.currentTarget.value);
+          }}
+        />
+      </label>
+      <div className="button-login-container">
+        <button
+          type="button"
+          className="signWithGoogle"
+          onClick={handleGoogleLogin}
+        >
+          <span>logar com</span> <FaGoogle />
         </button>
-      </form>
-    </SignPage>
+        <button
+          type="button"
+          className="signWithEmailAndPassword"
+          onClick={handleEmailAndPasswordLogin}
+        >
+          logar com sua conta
+        </button>
+      </div>
+    </FormContainer>
   );
 }
 
-export default SignIn;
+export default LoginForm;

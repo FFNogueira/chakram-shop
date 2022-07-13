@@ -1,5 +1,0 @@
-preta(sem hover) #181818
-preta(com hover) #252525
-
-vermelha (sem hover) #cf2e2e
-vermelha (com hover) #e73535

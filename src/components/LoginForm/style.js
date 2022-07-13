@@ -1,21 +1,17 @@
 // importa o pacote "styled-components":
 import styled from 'styled-components';
 
-export const SignPage = styled.section`
-    display: flex;
-    justify-content: space-around;
-    max-width: 800px;
-    margin: 20px auto;
+// Estilizando um parágrafo:
+// A constante exportada deve começar com letra miúscula:
+export const FormContainer = styled.form`
 
-    form{
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      max-width: 340px;
-    }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 340px;
 
-    p{
+  p{
         font-size: x-large;
         font-weight: bold;
         padding: 20px;
@@ -43,7 +39,6 @@ export const SignPage = styled.section`
        }
       }
 
-    .loginForm{
       .button-login-container{
         display: grid;
         width: 300px;
@@ -64,7 +59,7 @@ export const SignPage = styled.section`
           background-color: #181818;
           display:inline-flex;
           width: 122px;
-          justify-content: space-between;
+          justify-content: space-around;
           align-items: center;
 
           &:hover{
@@ -72,17 +67,5 @@ export const SignPage = styled.section`
           }
         }
       }
-    }
 
-    .registerForm{
-      button{
-        width: 100%;
-        color: floralwhite;
-        background-color: #181818;
-
-        &:hover{
-            background-color: #5c5c5c;
-          }
-      }
-    }
 `;
