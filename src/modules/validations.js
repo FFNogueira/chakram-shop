@@ -71,7 +71,7 @@ export default function validations(email = '', password = '', username = '') {
   // verifica se o username tem ao menos 6 caracteres:
   if (password.length < 6)
     errors.push('O nome de usuário deve ter ao menos 6 caracteres!');
-  // verifica se a senha só contem os números,símbolos e letras permitidos:
+  // verifica se o nome de usuário só contem os números,símbolos e letras permitidos:
   i = username.length - 1;
   found = false;
   while (i >= 0) {
@@ -90,6 +90,18 @@ export default function validations(email = '', password = '', username = '') {
   }
   if (found)
     errors.push(`O nome de usuário informado possui caracteres inválidos!`);
+  // Verifica se o nome de usuário tem, no máximo, 2 espaços em branco:
+  i = username.length - 1;
+  found = 0;
+  while (i >= 0) {
+    if (username[i] === ' ') {
+      found += 1;
+    }
+
+    i -= 1;
+  }
+  if (found > 2)
+    errors.push(`O nome de usuário não deve conter mais de 2 espaços vazios!`);
   // retorna o array de erros:
   return errors;
 }

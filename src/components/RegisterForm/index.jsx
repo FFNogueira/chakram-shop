@@ -6,8 +6,11 @@ import {
 } from '../../services/firebase';
 // mensageiro toastify:
 import sendToast from '../../modules/sendToast';
+// getProps:
+import getProps from '../../modules/getProps';
 
-function RegisterForm() {
+function RegisterForm(props) {
+  const { pointerEvents, setPointerEvents } = getProps(props, 'args', {});
   // variáveis de estado local:
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
@@ -15,6 +18,7 @@ function RegisterForm() {
 
   const handleEmailAndPasswordRegister = async () => {
     try {
+      setPointerEvents('none');
       sendToast('loading', 'Registrando...');
       // tenta fazer login usando email e senha:
       const registerData = await registerUsingEmailAndPassword(
@@ -23,8 +27,9 @@ function RegisterForm() {
         username,
       );
       // se houve algum erro:
-      if (registerData.errors?.length > 0) {
-        // enviar toast com todos os erros!!
+      if (registerData.errors?.length > 1) {
+        setPointerEvents('all');
+        // enviar toast com 2 ou mais erros!!
         sendToast(
           'error',
           <>
@@ -37,12 +42,19 @@ function RegisterForm() {
             })}
           </>,
         );
+      } else if (registerData.errors?.length === 1) {
+        setPointerEvents('all');
+        // enviar toast com apenas 1 erro!!
+        sendToast('error', registerData.errors[0]);
       }
-      // Se deu tudo certo:
+      // Se deu tudo certo (sem erros):
       else {
-        // tenta criar um novo documento na coleção "users":
+        // tente criar um documento na coleção 'users'...
+        // ...(apenas se este usuário...
+        // ...já não esiver cadastrado):
         const doc = await createUserDocument(registerData.user, username);
         // se houve erros na etapa anterior:
+        setPointerEvents('all');
         if (doc.errors) {
           sendToast('error', doc.errors[0]);
         }
@@ -55,6 +67,7 @@ function RegisterForm() {
         }
       }
     } catch (err) {
+      setPointerEvents('all');
       console.log('*MEU ERRO:*', err);
     }
   };
@@ -96,6 +109,7 @@ function RegisterForm() {
         type="button"
         className="register"
         onClick={handleEmailAndPasswordRegister}
+        style={{ pointerEvents }}
       >
         Registrar
       </button>

@@ -1,10 +1,11 @@
 // importa o mensageiro do toastify:
 import { toast } from 'react-toastify';
 
-export default function sendToast(type, message, autoClose = null) {
+const sendToast = (type, message, autoClose = null) => {
   // Remove todas as mensagens do toastify:
   toast.clearWaitingQueue();
   toast.dismiss();
+
   // verifica o tipo de toast desejado:
   switch (type) {
     case 'error':
@@ -37,4 +38,6 @@ export default function sendToast(type, message, autoClose = null) {
 
     default:
   }
-}
+};
+
+export default sendToast;

@@ -24,7 +24,6 @@ function App() {
         autoClose={false}
         draggable={false}
         transition={Slide}
-        limit={1}
       />
     </BrowserRouter>
   );

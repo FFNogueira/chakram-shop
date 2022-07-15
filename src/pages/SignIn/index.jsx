@@ -6,10 +6,12 @@ import RegisterForm from '../../components/RegisterForm';
 import { SignPage } from './style';
 
 function SignIn() {
+  const [pointerEvents, setPointerEvents] = React.useState('all');
+
   return (
     <SignPage>
-      <LoginForm />
-      <RegisterForm />
+      <LoginForm args={{ pointerEvents, setPointerEvents }} />
+      <RegisterForm args={{ pointerEvents, setPointerEvents }} />
     </SignPage>
   );
 }

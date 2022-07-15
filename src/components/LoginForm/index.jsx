@@ -8,14 +8,19 @@ import {
 } from '../../services/firebase';
 // mensageiro toastify:
 import sendToast from '../../modules/sendToast';
+// getProps:
+import getProps from '../../modules/getProps';
 
-function LoginForm() {
+function LoginForm(props) {
+  const { pointerEvents, setPointerEvents } = getProps(props, 'args', {});
+
   // variáveis de estado local:
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
 
   const handleGoogleLogin = async () => {
     try {
+      setPointerEvents('none');
       // tenta fazer login usando conta google:
       const loginData = await signInWithGooglePopup();
       // se der certo, tente criar um documento...
@@ -23,32 +28,42 @@ function LoginForm() {
       // ...já não esiver cadastrado):
       const doc = await createUserDocument(loginData.user);
       // se ocorreu erros na criação do novo usuário:
-      if (doc.errors) sendToast('error', doc.errors[0]);
-      else {
+      if (doc.errors) {
+        sendToast('error', doc.errors[0]);
+        setPointerEvents('all');
+      } else {
+        setPointerEvents('all');
         // ::::::::::::::::::::::::::::::::::::::::::::::::
         // TODO: provavelmente redirecionar para outra página
         // :::::::::::::::::::::::::::::::::::::::::::::::::
       }
     } catch (err) {
+      setPointerEvents('all');
       console.log('*MEU ERRO:*', err);
     }
   };
 
   const handleEmailAndPasswordLogin = async () => {
     try {
+      setPointerEvents('none');
       sendToast('loading', 'Logando...');
       // tenta fazer login usando email e senha:
       const loginData = await signInUsingEmailandPassword(email, password);
       // se houve algum erro:
-      if (loginData.errors) sendToast('error', loginData.errors[0]);
+      if (loginData.errors) {
+        sendToast('error', loginData.errors[0]);
+        setPointerEvents('all');
+      }
       // Se deu tudo certo:
       else {
+        setPointerEvents('all');
         sendToast('success', 'Logado com sucesso!', 4000);
         // ::::::::::::::::::::::::::::::::::::::::::::::::
         // TODO: provavelmente redirecionar para outra página
         // :::::::::::::::::::::::::::::::::::::::::::::::::
       }
     } catch (err) {
+      setPointerEvents('all');
       console.log('*MEU ERRO:*', err);
     }
   };
@@ -82,6 +97,7 @@ function LoginForm() {
           type="button"
           className="signWithGoogle"
           onClick={handleGoogleLogin}
+          style={{ pointerEvents }}
         >
           <span>logar com</span> <FaGoogle />
         </button>
@@ -89,6 +105,7 @@ function LoginForm() {
           type="button"
           className="signWithEmailAndPassword"
           onClick={handleEmailAndPasswordLogin}
+          style={{ pointerEvents }}
         >
           logar com sua conta
         </button>
