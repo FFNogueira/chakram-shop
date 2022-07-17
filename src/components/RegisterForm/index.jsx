@@ -1,16 +1,18 @@
 import React from 'react';
+// prop-types:
+import PropTypes from 'prop-types';
+// estyled-component da página:
 import { FormContainer } from './style';
+// serviços do Firebase
 import {
   createUserDocument,
   registerUsingEmailAndPassword,
 } from '../../services/firebase';
 // mensageiro toastify:
 import sendToast from '../../modules/sendToast';
-// getProps:
-import getProps from '../../modules/getProps';
 
 function RegisterForm(props) {
-  const { pointerEvents, setPointerEvents } = getProps(props, 'args', {});
+  const { pointerEvents, setPointerEvents } = props;
   // variáveis de estado local:
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
@@ -116,5 +118,10 @@ function RegisterForm(props) {
     </FormContainer>
   );
 }
+
+RegisterForm.propTypes = {
+  pointerEvents: PropTypes.string.isRequired,
+  setPointerEvents: PropTypes.func.isRequired,
+};
 
 export default RegisterForm;

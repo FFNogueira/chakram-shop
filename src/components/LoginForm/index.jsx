@@ -1,6 +1,10 @@
 import React from 'react';
 import { FaGoogle } from 'react-icons/fa';
+// prop-types:
+import PropTypes from 'prop-types';
+// estyled-component da página:
 import { FormContainer } from './style';
+// serviços do Firebase:
 import {
   signInWithGooglePopup,
   createUserDocument,
@@ -8,11 +12,9 @@ import {
 } from '../../services/firebase';
 // mensageiro toastify:
 import sendToast from '../../modules/sendToast';
-// getProps:
-import getProps from '../../modules/getProps';
 
 function LoginForm(props) {
-  const { pointerEvents, setPointerEvents } = getProps(props, 'args', {});
+  const { pointerEvents, setPointerEvents } = props;
 
   // variáveis de estado local:
   const [email, setEmail] = React.useState('');
@@ -113,5 +115,10 @@ function LoginForm(props) {
     </FormContainer>
   );
 }
+
+LoginForm.propTypes = {
+  pointerEvents: PropTypes.string.isRequired,
+  setPointerEvents: PropTypes.func.isRequired,
+};
 
 export default LoginForm;
