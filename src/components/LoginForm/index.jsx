@@ -45,8 +45,9 @@ function LoginForm(props) {
     }
   };
 
-  const handleEmailAndPasswordLogin = async () => {
+  const handleEmailAndPasswordLogin = async (event) => {
     try {
+      event.preventDefault();
       setPointerEvents('none');
       sendToast('loading', 'Logando...');
       // tenta fazer login usando email e senha:
@@ -72,10 +73,11 @@ function LoginForm(props) {
 
   // Executa sempre que o componente é renderizado:
   return (
-    <FormContainer action="">
+    <FormContainer action="" onSubmit={handleEmailAndPasswordLogin}>
       <p>Faça login</p>
       <label htmlFor="login-email">
         <input
+          required
           type="email"
           id="login-email"
           placeholder="e-mail"
@@ -86,6 +88,7 @@ function LoginForm(props) {
       </label>
       <label htmlFor="login-password">
         <input
+          required
           type="password"
           id="login-password"
           placeholder="password"
@@ -104,9 +107,8 @@ function LoginForm(props) {
           <span>logar com</span> <FaGoogle />
         </button>
         <button
-          type="button"
+          type="submit"
           className="signWithEmailAndPassword"
-          onClick={handleEmailAndPasswordLogin}
           style={{ pointerEvents }}
         >
           logar com sua conta

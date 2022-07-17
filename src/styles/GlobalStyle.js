@@ -10,6 +10,7 @@ export default createGlobalStyle`
     margin: 0;
     padding: 0;
     outline: none;
+    border-style: none;
    }
 
    html, body, #root{
@@ -18,7 +19,7 @@ export default createGlobalStyle`
 
   body{
      font-family: 'Quicksand', 'Open Sans', sans-serif;
-     background:linear-gradient(90deg, rgba(177,193,249,1) 0%, rgba(206,239,246,1) 50%, rgba(221,244,245,1) 100%);
+     background:linear-gradient(90deg, rgba(199 210 249) 0%, rgba(206,239,246,1) 50%, rgba(221,244,245,1) 100%);
     }
 
    a {

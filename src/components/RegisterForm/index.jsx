@@ -18,8 +18,9 @@ function RegisterForm(props) {
   const [password, setPassword] = React.useState('');
   const [username, setUsername] = React.useState('');
 
-  const handleEmailAndPasswordRegister = async () => {
+  const handleEmailAndPasswordRegister = async (event) => {
     try {
+      event.preventDefault();
       setPointerEvents('none');
       sendToast('loading', 'Registrando...');
       // tenta fazer login usando email e senha:
@@ -75,10 +76,11 @@ function RegisterForm(props) {
   };
 
   return (
-    <FormContainer action="">
+    <FormContainer action="" onSubmit={handleEmailAndPasswordRegister}>
       <p>Registre-se</p>
       <label htmlFor="register-username">
         <input
+          required
           type="text"
           id="register-username"
           placeholder="Nome de usuário"
@@ -89,6 +91,7 @@ function RegisterForm(props) {
       </label>
       <label htmlFor="register-email">
         <input
+          required
           type="email"
           id="register-email"
           placeholder="e-mail"
@@ -99,6 +102,7 @@ function RegisterForm(props) {
       </label>
       <label htmlFor="register-password">
         <input
+          required
           type="password"
           id="register-password"
           placeholder="password"
@@ -107,12 +111,7 @@ function RegisterForm(props) {
           }}
         />
       </label>
-      <button
-        type="button"
-        className="register"
-        onClick={handleEmailAndPasswordRegister}
-        style={{ pointerEvents }}
-      >
+      <button type="submit" className="register" style={{ pointerEvents }}>
         Registrar
       </button>
     </FormContainer>
