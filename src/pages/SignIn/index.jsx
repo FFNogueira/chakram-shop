@@ -10,8 +10,14 @@ function SignIn() {
 
   return (
     <SignPage>
-      <LoginForm args={{ pointerEvents, setPointerEvents }} />
-      <RegisterForm args={{ pointerEvents, setPointerEvents }} />
+      <LoginForm
+        pointerEvents={pointerEvents}
+        setPointerEvents={setPointerEvents}
+      />
+      <RegisterForm
+        pointerEvents={pointerEvents}
+        setPointerEvents={setPointerEvents}
+      />
     </SignPage>
   );
 }
