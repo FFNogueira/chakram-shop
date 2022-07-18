@@ -1,8 +1,10 @@
 import React from 'react';
+// hooks:
+import { useNavigate } from 'react-router-dom';
 import { FaGoogle } from 'react-icons/fa';
 // prop-types:
 import PropTypes from 'prop-types';
-// estyled-component da página:
+// styled-component da página:
 import { FormContainer } from './style';
 // serviços do Firebase:
 import {
@@ -14,7 +16,10 @@ import {
 import sendToast from '../../modules/sendToast';
 
 function LoginForm(props) {
-  const { pointerEvents, setPointerEvents } = props;
+  // hook redirecionador:
+  const navigate = useNavigate();
+  // obtendo props:
+  const { pointerEvents, setPointerEvents, prevPath } = props;
 
   // variáveis de estado local:
   const [email, setEmail] = React.useState('');
@@ -35,9 +40,8 @@ function LoginForm(props) {
         setPointerEvents('all');
       } else {
         setPointerEvents('all');
-        // ::::::::::::::::::::::::::::::::::::::::::::::::
-        // TODO: provavelmente redirecionar para outra página
-        // :::::::::::::::::::::::::::::::::::::::::::::::::
+        // redirecionar para outra página:
+        navigate(prevPath);
       }
     } catch (err) {
       setPointerEvents('all');
@@ -61,9 +65,8 @@ function LoginForm(props) {
       else {
         setPointerEvents('all');
         sendToast('success', 'Logado com sucesso!', 4000);
-        // ::::::::::::::::::::::::::::::::::::::::::::::::
-        // TODO: provavelmente redirecionar para outra página
-        // :::::::::::::::::::::::::::::::::::::::::::::::::
+        // redirecionar para outra página:
+        navigate(prevPath);
       }
     } catch (err) {
       setPointerEvents('all');
@@ -121,6 +124,7 @@ function LoginForm(props) {
 LoginForm.propTypes = {
   pointerEvents: PropTypes.string.isRequired,
   setPointerEvents: PropTypes.func.isRequired,
+  prevPath: PropTypes.string.isRequired,
 };
 
 export default LoginForm;

@@ -1,4 +1,6 @@
 import React from 'react';
+// hooks:
+import { useNavigate } from 'react-router-dom';
 // prop-types:
 import PropTypes from 'prop-types';
 // estyled-component da página:
@@ -12,7 +14,10 @@ import {
 import sendToast from '../../modules/sendToast';
 
 function RegisterForm(props) {
-  const { pointerEvents, setPointerEvents } = props;
+  // hook redirecionador:
+  const navigate = useNavigate();
+  // obtendo props:
+  const { pointerEvents, setPointerEvents, prevPath } = props;
   // variáveis de estado local:
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
@@ -64,9 +69,8 @@ function RegisterForm(props) {
         // Se deu tudo certo:
         else {
           sendToast('success', 'Registro efetuado!', 4000);
-          // ::::::::::::::::::::::::::::::::::::::::::::::::
-          // TODO: provavelmente redirecionar para outra página
-          // :::::::::::::::::::::::::::::::::::::::::::::::::
+          // redireciona para outra página:
+          navigate(prevPath);
         }
       }
     } catch (err) {
@@ -121,6 +125,7 @@ function RegisterForm(props) {
 RegisterForm.propTypes = {
   pointerEvents: PropTypes.string.isRequired,
   setPointerEvents: PropTypes.func.isRequired,
+  prevPath: PropTypes.string.isRequired,
 };
 
 export default RegisterForm;

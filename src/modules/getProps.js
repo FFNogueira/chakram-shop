@@ -1,15 +1,14 @@
 const getProps = (obj, path, defaultValue = undefined) => {
   try {
-    const travel = (regexp) =>
-      String.prototype.split
-        .call(path, regexp)
-        .filter(Boolean)
-        .reduce(
-          (res, key) => (res !== null && res !== undefined ? res[key] : res),
-          obj,
-        );
-    const result = travel(/[,[\]]+?/) || travel(/[,[\].]+?/);
-    return result === undefined || result === obj ? defaultValue : result;
+    // eslint-disable-next-line no-useless-escape
+    const parts = path.split(/[\]\[\.]/).filter((x) => x);
+    let attempt = { ...obj };
+    const i = 0;
+    while (i <= parts.length - 1) {
+      if (!attempt || !attempt[parts[i]]) return defaultValue;
+      attempt = attempt[parts[i]];
+    }
+    return attempt;
   } catch {
     return defaultValue;
   }

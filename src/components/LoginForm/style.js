@@ -20,7 +20,10 @@ export const FormContainer = styled.form`
           background-color: #ed1010;
 
           &:hover{
-            background-color: #f15959;
+            background-color: floralwhite;
+            color: #ed1010;
+            border: 2px solid #ed1010;
+            padding: 8px 13px;
           }
         }
 
@@ -33,7 +36,10 @@ export const FormContainer = styled.form`
           align-items: center;
 
           &:hover{
-            background-color: #5c5c5c;
+            background-color: floralwhite;
+            color: #181818;
+            border: 2px solid #181818;
+            padding: 8px 13px;
           }
         }
       }

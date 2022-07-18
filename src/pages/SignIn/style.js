@@ -27,13 +27,13 @@ form{
        width: 300px;
        padding: 7px;
        margin: 3px 0;
-       border-bottom: 1px solid black;
+       border-bottom: 2px solid black;
        font-size: 18px;
        background-color: transparent;
        border-radius: 4px;
 
        &:focus{
-        border-bottom: 1px solid #122bdf;
+        border-bottom: 2px solid #122bdf;
        }
 
        &::placeholder{

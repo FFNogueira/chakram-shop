@@ -4,7 +4,6 @@ import { initializeApp } from 'firebase/app';
 // importa o serviço de autenticação (getAuth) + outros serviços:
 import {
   getAuth,
-  signInWithRedirect,
   signInWithPopup,
   GoogleAuthProvider,
   signInWithEmailAndPassword,
@@ -24,7 +23,6 @@ import {
 import firebaseConfig from './firebaseConfig';
 // minhas validações de email e senha:
 import validations from '../../modules/validations';
-
 // =================================
 // Inicializa e configura o Firebase:
 // =================================
@@ -54,9 +52,9 @@ export const signInWithGooglePopup = () =>
 // Exporta o serviço de autenticação/login...
 // ...via email + senha (signInWithEmail):
 // ================================================
-export const signInUsingEmailandPassword = async (_email, _password) => {
+export const signInUsingEmailandPassword = async (email, password) => {
   try {
-    const userData = await signInWithEmailAndPassword(auth, _email, _password);
+    const userData = await signInWithEmailAndPassword(auth, email, password);
     return userData;
   } catch (err) {
     console.log(err);
@@ -71,17 +69,17 @@ export const signInUsingEmailandPassword = async (_email, _password) => {
 // ...via email + senha (createUserWithEmailAndPassword):
 // ================================================
 export const registerUsingEmailAndPassword = async (
-  _email,
-  _password,
-  _username,
+  email,
+  password,
+  username,
 ) => {
   try {
-    const errors = validations(_email, _password, _username);
+    const errors = validations(email, password, username);
     if (errors.length > 0) return { errors };
     const userData = await createUserWithEmailAndPassword(
       auth,
-      _email,
-      _password,
+      email,
+      password,
     );
     return userData;
   } catch (err) {
@@ -96,7 +94,7 @@ export const registerUsingEmailAndPassword = async (
 // Exporta a função de inicialização de um documento...
 // ...na coleção "users" do banco de dados:
 // ====================================================
-export async function createUserDocument(logedUser, _username = null) {
+export async function createUserDocument(logedUser, username = null) {
   try {
     // tenta obter a referência ao documento relativo a 'uid' do usuário que logou:
     const docRef = doc(db, 'users', logedUser.uid);
@@ -109,7 +107,7 @@ export async function createUserDocument(logedUser, _username = null) {
     // ...então crie um novo:
     let { displayName, photoURL } = logedUser;
     const { email } = logedUser;
-    if (!displayName) displayName = _username;
+    if (!displayName) displayName = username;
     if (!photoURL) photoURL = '';
     const createdAt = new Date();
     await setDoc(docRef, { email, displayName, photoURL, createdAt });

@@ -11,7 +11,10 @@ export const FormContainer = styled.form`
       background-color: #181818;
 
         &:hover{
-            background-color: #5c5c5c;
+          background-color: floralwhite;
+            color: #181818;
+            border: 2px solid #181818;
+            padding: 8px 13px;
           }
     }
 `;
