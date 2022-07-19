@@ -26,10 +26,13 @@ export const NavContainer = styled.div`
     }
   }
 
-  a:not(.logo) {
+  a:not(.logo),button {
+    padding: 0;
+    background-color: transparent;
     font-family: 'Orbitron', Courier, monospace;
-    margin-right: 25px;
+    margin: 0 25px 0 0;
     font-size: 15px;
+    font-weight: 400;
     color: black;
     transition: color 200ms ease-in-out;
 

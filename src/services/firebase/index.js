@@ -21,22 +21,22 @@ import {
 } from 'firebase/firestore';
 // Configurações do meu cluster Firebase:
 import firebaseConfig from './firebaseConfig';
-// minhas validações de email e senha:
+// Validações de email, senha e nome de usuário:
 import validations from '../../modules/validations';
 // =================================
 // Inicializa e configura o Firebase:
 // =================================
 const firebaseApp = initializeApp(firebaseConfig);
-// ===============================================
+// ================================================
 // Configura o Provedor de autenticação via google:
-// ===============================================
+// ================================================
 const googleProvider = new GoogleAuthProvider();
 googleProvider.setCustomParameters({
   prompt: 'select_account',
 });
-// =================================================
+// ================================================
 // Inicia o banco de dados Firestore:
-// =================================================
+// ================================================
 export const db = getFirestore();
 // ================================================
 // Exporta o serviço geral de autenticação/login...
@@ -57,11 +57,11 @@ export const signInUsingEmailandPassword = async (email, password) => {
     const userData = await signInWithEmailAndPassword(auth, email, password);
     return userData;
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     if (err.code?.indexOf('user-not-found') >= 0) {
       return { errors: ['usuário não registrado!'] };
     }
-    return { errors: ['e-mail/senha inválidos!'] };
+    return { errors: ['e-mail/senha incorretos!'] };
   }
 };
 // ================================================
@@ -83,17 +83,17 @@ export const registerUsingEmailAndPassword = async (
     );
     return userData;
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     if (err.code?.indexOf('email-already-in-use') >= 0) {
       return { errors: ['este e-mail já está em uso!'] };
     }
     return { errors: ['Erro ao efetuar registro!'] };
   }
 };
-// ====================================================
+// ===================================================
 // Exporta a função de inicialização de um documento...
 // ...na coleção "users" do banco de dados:
-// ====================================================
+// ===================================================
 export async function createUserDocument(logedUser, username = null) {
   try {
     // tenta obter a referência ao documento relativo a 'uid' do usuário que logou:
@@ -113,7 +113,7 @@ export async function createUserDocument(logedUser, username = null) {
     await setDoc(docRef, { email, displayName, photoURL, createdAt });
     return docRef;
   } catch (err) {
-    console.log('Erro em *createUserDocument*:', err); // debug
+    // console.log('Erro em *createUserDocument*:', err);
     return {
       errors: ['Erro ao verificar/criar o registro do usuário'],
     };

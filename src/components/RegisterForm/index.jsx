@@ -12,8 +12,12 @@ import {
 } from '../../services/firebase';
 // mensageiro toastify:
 import sendToast from '../../modules/sendToast';
+// importa as variáveis de estado global de UserContext:
+import { Context } from '../../services/context';
 
 function RegisterForm(props) {
+  // hook de contexto do usuário atual:
+  const { setCurrentUser } = React.useContext(Context);
   // hook redirecionador:
   const navigate = useNavigate();
   // obtendo props:
@@ -68,6 +72,8 @@ function RegisterForm(props) {
         }
         // Se deu tudo certo:
         else {
+          // seta este usuário como logado no contexto atual:
+          setCurrentUser(registerData.user);
           sendToast('success', 'Registro efetuado!', 4000);
           // redireciona para outra página:
           navigate(prevPath);
