@@ -30,14 +30,16 @@ function ProtectedRoute({ prevPath, myElement }) {
   // ==============================
   // Se usuário NÃO estiver logado:
   // ==============================
-  switch (prevPath) {
-    case '/signIn':
-      // ...e tentar acessar página de login, permita:
-      return myElement;
+  else {
+    switch (prevPath) {
+      case '/signIn':
+        // ...e tentar acessar página de login, permita:
+        return myElement;
 
-    default:
-      // se tentar acessar página protegida, redirecione para a página de login:
-      return <Navigate to="/signIn" state={{ prevPath, data }} />;
+      default:
+        // se tentar acessar página protegida, redirecione para a página de login:
+        return <Navigate to="/signIn" state={{ prevPath, data }} />;
+    }
   }
 }
 

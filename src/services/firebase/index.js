@@ -9,6 +9,7 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut,
+  onAuthStateChanged,
 } from 'firebase/auth';
 // importa os serviços da Firestore Database:
 // Firestore + referenciador de documentos (doc) + funções CRUD
@@ -131,3 +132,8 @@ export const signOutUser = async () => {
     return { errors: ['Erro ao deslogar usuário!'] };
   }
 };
+// ===================================================
+// Observador de eventos de mudança de estado de login:
+// ===================================================
+export const onAuthStateChangedListener = (callback) =>
+  onAuthStateChanged(auth, callback);

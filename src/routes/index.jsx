@@ -16,10 +16,7 @@ function MyRoutes() {
         path="/signIn"
         element={<ProtectedRoute prevPath="/signIn" myElement={<SignIn />} />}
       />
-      <Route
-        path="/contact"
-        element={<ProtectedRoute prevPath="/contact" myElement={<Contact />} />}
-      />
+      <Route path="/contact" element={<Contact />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

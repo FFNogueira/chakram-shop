@@ -17,7 +17,7 @@ function Navbar() {
   // hook redirecionador:
   const navigate = useNavigate();
   // Tenta obter o usuário logado atualmente + função setter:
-  const { currentUser, setCurrentUser } = React.useContext(Context);
+  const { currentUser } = React.useContext(Context);
 
   const handleSignOutUser = async () => {
     const res = await signOutUser();
@@ -25,7 +25,6 @@ function Navbar() {
     if (res?.errors) sendToast('errors', res.errors[0]);
     // se logout deu certo:
     else {
-      setCurrentUser(null);
       navigate('/');
     }
   };
