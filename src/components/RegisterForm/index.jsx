@@ -21,7 +21,7 @@ function RegisterForm(props) {
   // hook redirecionador:
   const navigate = useNavigate();
   // obtendo props:
-  const { pointerEvents, setPointerEvents, prevPath } = props;
+  const { pointerEvents, setPointerEvents, prevPath, data } = props;
   // variáveis de estado local:
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
@@ -76,7 +76,7 @@ function RegisterForm(props) {
           setCurrentUser(registerData.user);
           sendToast('success', 'Registro efetuado!', 4000);
           // redireciona para outra página:
-          navigate(prevPath);
+          navigate(prevPath, { state: { data } });
         }
       }
     } catch (err) {
@@ -132,6 +132,7 @@ RegisterForm.propTypes = {
   pointerEvents: PropTypes.string.isRequired,
   setPointerEvents: PropTypes.func.isRequired,
   prevPath: PropTypes.string.isRequired,
+  data: PropTypes.shape({}).isRequired,
 };
 
 export default RegisterForm;

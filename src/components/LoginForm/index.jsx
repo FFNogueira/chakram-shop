@@ -23,7 +23,7 @@ function LoginForm(props) {
   // hook redirecionador:
   const navigate = useNavigate();
   // obtendo props:
-  const { pointerEvents, setPointerEvents, prevPath } = props;
+  const { pointerEvents, setPointerEvents, prevPath, data } = props;
 
   // variáveis de estado local:
   const [email, setEmail] = React.useState('');
@@ -46,8 +46,9 @@ function LoginForm(props) {
         setPointerEvents('all');
       } else {
         setPointerEvents('all');
+        sendToast('success', 'Logado com sucesso!', 4000);
         // redirecionar para outra página:
-        navigate(prevPath);
+        navigate(prevPath, { state: { data } });
       }
     } catch (err) {
       setPointerEvents('all');
@@ -74,7 +75,7 @@ function LoginForm(props) {
         setPointerEvents('all');
         sendToast('success', 'Logado com sucesso!', 4000);
         // redirecionar para outra página:
-        navigate(prevPath);
+        navigate(prevPath, { state: { data } });
       }
     } catch (err) {
       setPointerEvents('all');
@@ -133,6 +134,7 @@ LoginForm.propTypes = {
   pointerEvents: PropTypes.string.isRequired,
   setPointerEvents: PropTypes.func.isRequired,
   prevPath: PropTypes.string.isRequired,
+  data: PropTypes.shape({}).isRequired,
 };
 
 export default LoginForm;

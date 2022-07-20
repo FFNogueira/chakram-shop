@@ -8,6 +8,7 @@ import {
   GoogleAuthProvider,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  signOut,
 } from 'firebase/auth';
 // importa os serviços da Firestore Database:
 // Firestore + referenciador de documentos (doc) + funções CRUD
@@ -119,3 +120,14 @@ export async function createUserDocument(logedUser, username = null) {
     };
   }
 }
+// =======================================
+// Desloga usuário...
+// =======================================
+export const signOutUser = async () => {
+  try {
+    return await signOut(auth);
+  } catch (err) {
+    console.log(err);
+    return { errors: ['Erro ao deslogar usuário!'] };
+  }
+};
