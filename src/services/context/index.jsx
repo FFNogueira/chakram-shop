@@ -19,6 +19,7 @@ export function Provider({ children }) {
   // ...sempre que o app montar:
   React.useEffect(() => {
     const unsubscribe = onAuthStateChangedListener((user) => {
+      // guardando o usuário atual em uma variável de estado golbal:
       setCurrentUser(user);
     });
 

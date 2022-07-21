@@ -9,6 +9,8 @@ import GlobalStyle from './styles/GlobalStyle';
 import MyRoutes from './routes';
 // importa a Navbar:
 import Navbar from './components/Navbar';
+// importa a tela de loading:
+import LoadingScreen from './components/LoadingScreen';
 // importa o provider de variáveis de estado global:
 import { Provider } from './services/context';
 
@@ -18,6 +20,7 @@ function App() {
   return (
     <BrowserRouter>
       <Provider>
+        <LoadingScreen />
         <Navbar />
         <MyRoutes />
         <GlobalStyle />

@@ -3,7 +3,7 @@ import React from 'react';
 // importa styled component específico para esta página:
 import { Page } from './styled';
 // Componentes desta Página:
-import Category from '../../components/category';
+import Category from '../../components/Category';
 
 function Home() {
   const categories = [
