@@ -43,9 +43,9 @@ function Navbar() {
       ) : (
         <Link to="/signIn">LOGIN</Link>
       )}
-      <Link to="/cart">
+      <button type="button">
         <BsHandbag className="shopping-bag-icon" />
-      </Link>
+      </button>
     </NavContainer>
   );
 }

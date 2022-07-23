@@ -10,6 +10,10 @@ h2{
   padding-left: 20px;
 }
 
+.scaleLoader {
+  text-align: center;
+}
+
 .item-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, 205px);
@@ -30,22 +34,15 @@ h2{
     object-position: center;
   }
 
-  .item-desc {
-    padding-top: 5px;
-    display: flex;
-    justify-content: space-between;
-    font-family: 'Orbitron',sans-serif;
-    font-weight: 400;
-    font-size: 15px;
-  }
-
-  .add-to-cart-link{
+  .add-to-cart-button{
     display: none;
     font-family: 'Open Sans',sans-serif;
+    font-weight: 400;
+    border-radius: 0;
     color: floralwhite;
     text-align: center;
     position: absolute;
-    bottom: 60px;
+    bottom: 15px;
     width: 120px;
     padding: 5px;
     align-self: center;
@@ -59,10 +56,19 @@ h2{
       opacity: 0.8;
     }
 
-    .add-to-cart-link{
+    .add-to-cart-button{
     display: block;
   }
   }
+  }
+
+  .item-desc {
+    padding-top: 5px;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Orbitron',sans-serif;
+    font-weight: 400;
+    font-size: 15px;
   }
 }
 

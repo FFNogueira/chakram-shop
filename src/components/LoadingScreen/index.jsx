@@ -1,4 +1,6 @@
 import React from 'react';
+// react-spinner:
+import BarLoader from 'react-spinners/BarLoader';
 // styled component:
 import { LoadingPage } from './style';
 // importa o svg da logo:
@@ -20,7 +22,7 @@ function LoadingScreen() {
   return (
     <LoadingPage style={{ display }}>
       <Logo />
-      <h1>CARREGANDO...</h1>
+      <BarLoader className="loader" width="200px" />
     </LoadingPage>
   );
 }

@@ -17,10 +17,10 @@ export const LoadingPage = styled.div`
   svg {
     width: 150px;
     height: 150px;
+    padding: 10px;
   }
 
-  h1{
-    font-family: 'Orbitron', Courier, monospace;
-    padding: 10px;
+  .loader {
+    text-align: center;
   }
 `;
