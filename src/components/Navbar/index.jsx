@@ -34,7 +34,7 @@ function Navbar() {
       <Link to="/" className="logo">
         <Logo className="logo-icon" />
       </Link>
-      <Link to="/demo">PRODUTOS</Link>
+      <Link to="/products">PRODUTOS</Link>
       <Link to="/contact">CONTATO</Link>
       {currentUser ? (
         <button type="button" onClick={handleSignOutUser}>
@@ -43,7 +43,7 @@ function Navbar() {
       ) : (
         <Link to="/signIn">LOGIN</Link>
       )}
-      <Link to="/demo">
+      <Link to="/cart">
         <BsHandbag className="shopping-bag-icon" />
       </Link>
     </NavContainer>

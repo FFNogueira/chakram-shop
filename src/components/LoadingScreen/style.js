@@ -7,6 +7,7 @@ export const LoadingPage = styled.div`
   justify-content: center;
   align-items: center;
   position: absolute;
+  z-index: 5;
   top: 0;
   right: 0;
   bottom: 0;

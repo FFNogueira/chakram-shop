@@ -10,7 +10,7 @@ function LoadingScreen() {
   React.useEffect(() => {
     const timer = setTimeout(() => {
       setDisplay('none');
-    }, 1000);
+    }, 2000);
     // desativa o timer:
     return () => {
       clearTimeout(timer);

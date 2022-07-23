@@ -1,7 +1,7 @@
 // importa o mensageiro do toastify:
 import { toast } from 'react-toastify';
 
-const sendToast = (type, message, autoClose = null) => {
+const sendToast = (type = undefined, message = '', autoClose = undefined) => {
   // Remove todas as mensagens do toastify:
   toast.clearWaitingQueue();
   toast.dismiss();

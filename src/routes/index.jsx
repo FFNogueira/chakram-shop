@@ -7,6 +7,7 @@ import Home from '../pages/Home';
 import SignIn from '../pages/SignIn';
 import NotFound from '../pages/404';
 import Contact from '../pages/Contact';
+import Products from '../pages/Products';
 
 function MyRoutes() {
   return (
@@ -17,6 +18,7 @@ function MyRoutes() {
         element={<ProtectedRoute prevPath="/signIn" myElement={<SignIn />} />}
       />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/products" element={<Products />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
