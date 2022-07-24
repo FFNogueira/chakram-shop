@@ -11,27 +11,30 @@ import MyRoutes from './routes';
 import Navbar from './components/Navbar';
 // importa a tela de loading:
 import LoadingScreen from './components/LoadingScreen';
-// importa o provider de variáveis de estado global:
-import { Provider } from './services/context';
+// Providers de variáveis de estado global:
+import { UserLoginStatusProvider } from './services/context/userLoginStatus';
+import { ShoppingCartProvider } from './services/context/shoppingCart';
 
 function App() {
   // Executa sempre que o componente é renderizado:
 
   return (
     <BrowserRouter>
-      <Provider>
-        <LoadingScreen />
-        <Navbar />
-        <MyRoutes />
-        <GlobalStyle />
-        <ToastContainer
-          position="bottom-center"
-          className="toast-container"
-          autoClose={false}
-          draggable={false}
-          transition={Slide}
-        />
-      </Provider>
+      <UserLoginStatusProvider>
+        <ShoppingCartProvider>
+          <LoadingScreen />
+          <Navbar />
+          <MyRoutes />
+          <GlobalStyle />
+          <ToastContainer
+            position="bottom-center"
+            className="toast-container"
+            autoClose={false}
+            draggable={false}
+            transition={Slide}
+          />
+        </ShoppingCartProvider>
+      </UserLoginStatusProvider>
     </BrowserRouter>
   );
 }

@@ -36,14 +36,6 @@ export const NavContainer = styled.div`
     color: black;
     transition: color 200ms ease-in-out;
 
-    .shopping-bag-icon {
-      font-size: 30px;
-    }
-
-    &:last-child {
-      margin-right: 0;
-    }
-
     &:hover {
       color: #2547ff;
     }

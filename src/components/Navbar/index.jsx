@@ -1,5 +1,4 @@
 import React from 'react';
-import { BsHandbag } from 'react-icons/bs';
 // importa Links:
 import { Link, useNavigate } from 'react-router-dom';
 // importa o svg da logo:
@@ -7,17 +6,19 @@ import { ReactComponent as Logo } from '../../favicon.svg';
 // importa styled component específico para esta página:
 import { NavContainer } from './style';
 // variáveis de estado global de Context:
-import { Context } from '../../services/context';
+import { userLoginStatusContext } from '../../services/context/userLoginStatus';
 // Serviços do firebase:
 import { signOutUser } from '../../services/firebase';
 // mensageiro toastify:
 import sendToast from '../../modules/sendToast';
+// componente botão carrinho de compras:
+import ShoppingCartPreview from '../ShoppingCartPreview';
 
 function Navbar() {
   // hook redirecionador:
   const navigate = useNavigate();
   // Tenta obter o usuário logado atualmente + função setter:
-  const { currentUser } = React.useContext(Context);
+  const { currentUser } = React.useContext(userLoginStatusContext);
 
   const handleSignOutUser = async () => {
     const res = await signOutUser();
@@ -43,9 +44,7 @@ function Navbar() {
       ) : (
         <Link to="/signIn">LOGIN</Link>
       )}
-      <button type="button">
-        <BsHandbag className="shopping-bag-icon" />
-      </button>
+      <ShoppingCartPreview />
     </NavContainer>
   );
 }

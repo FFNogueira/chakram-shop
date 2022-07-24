@@ -7,10 +7,15 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 // estilo deste componente:
 import { List } from './style';
+// importa o contexto do carrinho de compras:
+import { shoppingCartContext } from '../../services/context/shoppingCart';
+// função para alterações no carrinho de compras:
+import manageShoppingCartItens from '../../modules/manageShoppingCartItens';
 
 function ProductList({ itemType, dataURL }) {
   // variáveis de estado:
   const [list, setList] = React.useState([]);
+  const { cartItens, setCartItens } = React.useContext(shoppingCartContext);
 
   React.useEffect(() => {
     async function getListData() {
@@ -43,7 +48,19 @@ function ProductList({ itemType, dataURL }) {
                     src={item.imageUrl}
                     alt={item.name}
                   />
-                  <button type="button" className="add-to-cart-button">
+                  <button
+                    type="button"
+                    className="add-to-cart-button"
+                    onClick={() => {
+                      setCartItens(
+                        manageShoppingCartItens(cartItens, {
+                          itemName: item.name,
+                          imgURL: item.imageUrl,
+                          unitPrice: item.price,
+                        }),
+                      );
+                    }}
+                  >
                     Adicionar ao carrinho
                   </button>
                 </div>

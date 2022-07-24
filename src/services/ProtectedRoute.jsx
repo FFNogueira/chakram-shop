@@ -4,11 +4,11 @@ import { Navigate, useLocation } from 'react-router-dom';
 // Proptypes:
 import PropTypes from 'prop-types';
 // Contexto com variáveis de estado global:
-import { Context } from './context';
+import { userLoginStatusContext } from './context/userLoginStatus';
 
 function ProtectedRoute({ prevPath, myElement }) {
   // verifica se há usuário logado:
-  const { currentUser } = React.useContext(Context);
+  const { currentUser } = React.useContext(userLoginStatusContext);
   // tenta obter dados provenientes do state de location:
   const location = useLocation();
   // dados auxiliares que porventura tenham sido enviados:

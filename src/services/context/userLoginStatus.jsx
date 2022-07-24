@@ -5,13 +5,13 @@ import PropTypes from 'prop-types';
 import { onAuthStateChangedListener } from '../firebase';
 
 // valor inicial do objeto Context:
-export const Context = React.createContext({
+export const userLoginStatusContext = React.createContext({
   currentUser: null,
   setCurrentUser: () => null,
 });
 
-// componente-provider para Context:
-export function Provider({ children }) {
+// Provider para este contexto:
+export function UserLoginStatusProvider({ children }) {
   // variáveis de estado global:
   const [currentUser, setCurrentUser] = React.useState(null);
 
@@ -33,10 +33,17 @@ export function Provider({ children }) {
     [currentUser],
   );
   // RETORNANDO O PROVIDER:
-  return <Context.Provider value={value}>{children}</Context.Provider>;
+  return (
+    <userLoginStatusContext.Provider value={value}>
+      {children}
+    </userLoginStatusContext.Provider>
+  );
 }
 
-Provider.propTypes = {
+UserLoginStatusProvider.propTypes = {
   // children é um array de elementos React:
-  children: PropTypes.arrayOf(PropTypes.element).isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.element),
+    PropTypes.element,
+  ]).isRequired,
 };
