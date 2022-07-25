@@ -5,10 +5,19 @@ export const ShoppingCartContainer = styled.div`
 
     button {
       margin-right: 0;
+      position: relative;
+      padding-right: 11px;
 
-      .shopping-bag-icon {
+      .shopping-cart-icon {
       font-size: 30px;
     }
+
+    .number-of-itens{
+      position: absolute;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
     }
 
     .cart-preview-window{
@@ -17,17 +26,11 @@ export const ShoppingCartContainer = styled.div`
       position: absolute;
       z-index: 1;
       right: 0px;
-      width: 220px;
-      height: 270px;
+      width: 240px;
+      height: 290px;
       background-color: #fffaf0f0;
       border: 2px solid black;
       padding: 10px;
-
-      .cart-added-itens{
-        height: 200px;
-        margin: 0 auto auto auto;
-        overflow-y: auto
-      }
 
       a{
         font-family: 'Open Sans',sans-serif;

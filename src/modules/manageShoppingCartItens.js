@@ -1,7 +1,7 @@
 const manageShoppingCartItens = (
   cartItens,
   itemToBeHandled,
-  removeItem = false,
+  unitsToTemove = undefined,
 ) => {
   let newCart = [...cartItens];
   // procura se o item já existe no carrinho:
@@ -18,16 +18,16 @@ const manageShoppingCartItens = (
     });
   }
   // SENÃO, SE O ITEM JÁ EXISTE:
-  // se deseja remover uma unidade:
-  else if (removeItem) {
-    newCart[itemIndex].units -= 1;
+  // se deseja remover itens:
+  else if (unitsToTemove) {
+    newCart[itemIndex].units -= unitsToTemove;
     // limpe do carrinho todo produto com 0 unidades:
     newCart = newCart.filter((item) => item.units > 0);
   } else {
     // senão, adicione uma unidade:
     newCart[itemIndex].units += 1;
   }
-  console.log(newCart); // DEBUG!!!!!!!!!
+  // console.log(newCart); // DEBUG!!!!!!!!!
   // salva carrinho no localStorage:
   window.localStorage.setItem('cartItens', JSON.stringify(newCart));
   // muda o estado do carrinho:
