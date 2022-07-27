@@ -18,8 +18,10 @@ import {
   doc,
   setDoc,
   getDoc,
+  getDocs,
   updateDoc,
   deleteDoc,
+  collection,
 } from 'firebase/firestore';
 // Configurações do meu cluster Firebase:
 import firebaseConfig from './firebaseConfig';
@@ -137,3 +139,41 @@ export const signOutUser = async () => {
 // ===================================================
 export const onAuthStateChangedListener = (callback) =>
   onAuthStateChanged(auth, callback);
+// ==========================================
+// Obtém todos os documentos de uma coleção:
+// ==========================================
+export const getAllDocs = async (collectionName) => {
+  try {
+    const collectionRef = collection(db, collectionName);
+    const docsQuerySnapshot = await getDocs(collectionRef);
+    const itensLists = [];
+    docsQuerySnapshot.forEach((docSnapShot) => {
+      itensLists.push(docSnapShot.data());
+    });
+    return itensLists;
+  } catch (err) {
+    console.log(`erro ao obter dados da coleção ${collectionName}`);
+    return { errors: [`erro ao obter dados da coleção ${collectionName}`] };
+  }
+};
+// // ==========================================
+// // Popula a coleção 'categories':
+// // ==========================================
+// export const populateCategories = async (shopData) => {
+//   try {
+//     let i = 0;
+//     while (i < shopData.length) {
+//       // tenta obter a referência do documento:
+//       const docRef = doc(
+//         db,
+//         'categories',
+//         shopData[i].title.replace('/', '_').toLowerCase(),
+//       );
+//       // eslint-disable-next-line no-await-in-loop
+//       await setDoc(docRef, shopData[i]);
+//       i += 1;
+//     }
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
