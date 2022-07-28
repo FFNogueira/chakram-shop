@@ -47,6 +47,13 @@ h2{
     align-self: center;
     background-color: #00000091;
     border: 1px solid floralwhite;
+    transition: all 250ms ease-in-out;
+
+    &:hover{
+      background-color: #fffaf0d1;
+      border: 1px solid black;
+      color: black;
+    }
   }
 
   &:hover{

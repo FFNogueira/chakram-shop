@@ -40,9 +40,11 @@ export const ShoppingCartContainer = styled.div`
         color: floralwhite;
         border: 2px solid #181818;
         padding: 7px 12px;
+        transition: all 250ms ease-in-out;
 
         &:hover{
-          color: floralwhite;
+          color: #181818;
+          background-color: floralwhite;
         }
       }
     }
