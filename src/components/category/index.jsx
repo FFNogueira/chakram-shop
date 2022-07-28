@@ -9,7 +9,7 @@ import { CategoryItem } from './style';
 function Category({ properties }) {
   const { name, className, imgSrc } = properties;
   return (
-    <Link to={`/${className}`} className={className}>
+    <Link to={`/products#${className}`} className={className}>
       <CategoryItem
         style={{
           backgroundImage: `url(${imgSrc})`,

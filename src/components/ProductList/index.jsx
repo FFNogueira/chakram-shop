@@ -7,14 +7,16 @@ import { List } from './style';
 import { shoppingCartContext } from '../../services/context/shoppingCart';
 // função para alterações no carrinho de compras:
 import manageShoppingCartItens from '../../modules/manageShoppingCartItens';
+// mensageiro toastify:
+import sendToast from '../../modules/sendToast';
 
 function ProductList({ itemList }) {
-  const { title, items } = itemList;
+  const { title, items, id } = itemList;
   const { cartItens, setCartItens } = React.useContext(shoppingCartContext);
 
   return (
     <List>
-      <h2>{title}</h2>
+      <h2 id={id}>{title}</h2>
       <div className="item-list">
         {items.map((item) => {
           return (
@@ -32,14 +34,21 @@ function ProductList({ itemList }) {
                         unitPrice: item.price,
                       }),
                     );
+                    sendToast(
+                      'success',
+                      `"${item.name}" adicionado ao carrinho`,
+                      2000,
+                    );
                   }}
                 >
                   Adicionar ao carrinho
                 </button>
               </div>
-              <p className="item-desc">
-                <span>{item.name}</span> <span>{`R$ ${item.price}`}</span>
-              </p>
+              <div className="item-desc">
+                <hr />
+                <p className="item-name">{item.name}</p>
+                <p className="item-price">{`R$ ${item.price}`}</p>
+              </div>
             </div>
           );
         })}
@@ -52,6 +61,7 @@ ProductList.propTypes = {
   itemList: PropTypes.shape({
     title: PropTypes.string,
     items: PropTypes.arrayOf(PropTypes.shape({})),
+    id: PropTypes.string,
   }).isRequired,
 };
 

@@ -4,9 +4,8 @@ export const List = styled.section`
 
 h2{
   text-align: left;
-  font-size: medium;
   margin-bottom: 10px;
-  font-size: larger;
+  font-size: 22px;
   padding-left: 20px;
 }
 
@@ -63,12 +62,22 @@ h2{
   }
 
   .item-desc {
-    padding-top: 5px;
-    display: flex;
-    justify-content: space-between;
+    padding-top: 8px;
     font-family: 'Orbitron',sans-serif;
-    font-weight: 400;
-    font-size: 15px;
+    text-align: left;
+
+    .item-name{
+      padding-top: 6px;
+      border-top: 2px solid grey;
+      font-weight: 400;
+      font-size: 14px;
+    }
+
+    .item-price{
+      font-weight: 700;
+      font-size: 22px;
+      color: #2c2cc3;
+    }
   }
 }
 
