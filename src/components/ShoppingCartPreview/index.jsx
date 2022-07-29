@@ -11,10 +11,24 @@ function ShoppingCartPreview() {
   const [display, setDisplay] = React.useState('none');
   const { cartItens } = React.useContext(shoppingCartContext);
 
+  const handleCloseCartPreview = (e) => {
+    const isInsideCartPreview = e.target.closest('.cart-preview-window');
+    const isCartButton = e.target.closest('.cart-button');
+    if (!isInsideCartPreview && !isCartButton) setDisplay('none');
+  };
+
+  React.useEffect(() => {
+    document.addEventListener('click', handleCloseCartPreview);
+    return () => {
+      document.removeEventListener('click', handleCloseCartPreview);
+    };
+  }, []);
+
   return (
     <ShoppingCartContainer>
       <button
         type="button"
+        className="cart-button"
         onClick={() => {
           setDisplay(display === 'none' ? 'flex' : 'none');
         }}
@@ -26,7 +40,14 @@ function ShoppingCartPreview() {
       </button>
       <div className="cart-preview-window" style={{ display }}>
         <CartMiniCards cartItens={cartItens} />
-        <Link to="/cart">Ir para o carrinho</Link>
+        <Link
+          to="/cart"
+          onClick={() => {
+            setDisplay('none');
+          }}
+        >
+          Ir para o carrinho
+        </Link>
       </div>
     </ShoppingCartContainer>
   );
