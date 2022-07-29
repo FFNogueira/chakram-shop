@@ -6,7 +6,6 @@ import ProtectedRoute from '../services/ProtectedRoute';
 import Home from '../pages/Home';
 import SignIn from '../pages/SignIn';
 import NotFound from '../pages/404';
-import Contact from '../pages/Contact';
 import Products from '../pages/Products';
 import Cart from '../pages/Cart';
 
@@ -18,7 +17,6 @@ function MyRoutes() {
         path="/signIn"
         element={<ProtectedRoute prevPath="/signIn" myElement={<SignIn />} />}
       />
-      <Route path="/contact" element={<Contact />} />
       <Route path="/products" element={<Products />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="*" element={<NotFound />} />

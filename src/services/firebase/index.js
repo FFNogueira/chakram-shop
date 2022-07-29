@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 // Inicializador do Firebase:
 import { initializeApp } from 'firebase/app';
 // importa o serviço de autenticação (getAuth) + outros serviços:
@@ -19,8 +18,6 @@ import {
   setDoc,
   getDoc,
   getDocs,
-  updateDoc,
-  deleteDoc,
   collection,
 } from 'firebase/firestore';
 // Configurações do meu cluster Firebase:
@@ -30,6 +27,7 @@ import validations from '../../modules/validations';
 // =================================
 // Inicializa e configura o Firebase:
 // =================================
+// eslint-disable-next-line no-unused-vars
 const firebaseApp = initializeApp(firebaseConfig);
 // ================================================
 // Configura o Provedor de autenticação via google:
@@ -130,7 +128,7 @@ export const signOutUser = async () => {
   try {
     return await signOut(auth);
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     return { errors: ['Erro ao deslogar usuário!'] };
   }
 };
@@ -152,7 +150,7 @@ export const getAllDocs = async (collectionName) => {
     });
     return itensLists;
   } catch (err) {
-    console.log(`erro ao obter dados da coleção ${collectionName}`);
+    // console.log(`erro ao obter dados da coleção ${collectionName}`);
     return { errors: [`erro ao obter dados da coleção ${collectionName}`] };
   }
 };

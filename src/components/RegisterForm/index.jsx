@@ -75,7 +75,7 @@ function RegisterForm(props) {
       }
     } catch (err) {
       setPointerEvents('all');
-      console.log('*MEU ERRO:*', err);
+      console.log('*ERRO:*', err);
     }
   };
 

@@ -9,12 +9,13 @@ export const FormContainer = styled.form`
       width: 100%;
       color: floralwhite;
       background-color: #181818;
+      border: 2px solid #181818;
+      padding: 8px 13px;
 
         &:hover{
+          transition: all 250ms ease-in;
           background-color: floralwhite;
-            color: #181818;
-            border: 2px solid #181818;
-            padding: 8px 13px;
+          color: #181818;
           }
     }
 `;

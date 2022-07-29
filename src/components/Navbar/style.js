@@ -15,7 +15,7 @@ export const NavContainer = styled.div`
     .logo-icon {
       width: 60px;
       height: 60px;
-      transition: color 200ms ease-in-out;
+      transition: color 250ms ease-in-out;
       color: black;
     }
 
@@ -34,7 +34,7 @@ export const NavContainer = styled.div`
     font-size: 15px;
     font-weight: 400;
     color: black;
-    transition: color 200ms ease-in-out;
+    transition: color 250ms ease-in-out;
 
     &:hover {
       color: #2547ff;

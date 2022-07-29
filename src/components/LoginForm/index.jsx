@@ -46,7 +46,7 @@ function LoginForm(props) {
       }
     } catch (err) {
       setPointerEvents('all');
-      console.log('*MEU ERRO:*', err);
+      console.log('*ERRO:*', err);
     }
   };
 
@@ -71,7 +71,7 @@ function LoginForm(props) {
       }
     } catch (err) {
       setPointerEvents('all');
-      console.log('*MEU ERRO:*', err);
+      console.log('*ERRO:*', err);
     }
   };
 

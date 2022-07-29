@@ -50,7 +50,7 @@ export const CategoryItem = styled.div`
     cursor: pointer;
 
     img{
-      transition: transform 3s ease-in;
+      transition: transform 5s ease-in;
       transform: scale(1.1);
     }
   }

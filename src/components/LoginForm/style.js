@@ -7,6 +7,7 @@ export const FormContainer = styled.form`
 
     button{
       margin: 15px auto;
+      padding: 8px 13px;
     }
 
       .button-login-container{
@@ -18,12 +19,13 @@ export const FormContainer = styled.form`
         .signWithEmailAndPassword{
           color: floralwhite;
           background-color: #ed1010;
+          border: 2px solid #ed1010;
 
           &:hover{
+            transition: all 250ms ease-in;
             background-color: floralwhite;
             color: #ed1010;
-            border: 2px solid #ed1010;
-            padding: 8px 13px;
+
           }
         }
 
@@ -34,12 +36,13 @@ export const FormContainer = styled.form`
           width: 122px;
           justify-content: space-around;
           align-items: center;
+          border: 2px solid #181818;
 
           &:hover{
+            transition: all 250ms ease-in;
             background-color: floralwhite;
             color: #181818;
-            border: 2px solid #181818;
-            padding: 8px 13px;
+
           }
         }
       }

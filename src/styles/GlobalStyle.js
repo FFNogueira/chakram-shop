@@ -28,7 +28,6 @@ export default createGlobalStyle`
 
    button{
     font-family: 'Open Sans', sans-serif;
-    transition: background-color 200ms ease-in-out, color 200ms ease-in-out ;
     border: none;
     border-radius: 4px;
     cursor: pointer;

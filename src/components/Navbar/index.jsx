@@ -36,7 +36,6 @@ function Navbar() {
         <Logo className="logo-icon" />
       </Link>
       <Link to="/products">PRODUTOS</Link>
-      <Link to="/contact">CONTATO</Link>
       {currentUser ? (
         <button type="button" onClick={handleSignOutUser}>
           LOGOUT
