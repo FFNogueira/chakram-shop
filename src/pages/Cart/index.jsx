@@ -21,7 +21,7 @@ function Cart() {
 
   return (
     <Page>
-      {cartItens.length > 0 ? (
+      {cartItens.length ? (
         <>
           {cartItens.map(({ itemName, imgURL, units, unitPrice }) => {
             return (

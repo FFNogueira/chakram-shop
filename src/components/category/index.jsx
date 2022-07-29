@@ -10,13 +10,8 @@ function Category({ properties }) {
   const { name, className, imgSrc } = properties;
   return (
     <Link to={`/products#${className}`} className={className}>
-      <CategoryItem
-        style={{
-          backgroundImage: `url(${imgSrc})`,
-          backgroundPosition: 'center',
-          backgroundSize: 'cover',
-        }}
-      >
+      <CategoryItem>
+        <img src={imgSrc} alt={className} />
         <div className="text">
           <h2>{name}</h2>
           <p>comprar agora!</p>

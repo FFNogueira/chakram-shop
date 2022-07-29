@@ -7,7 +7,7 @@ import { MiniCardsContainer } from './style';
 function CartMiniCards({ cartItens }) {
   return (
     <MiniCardsContainer>
-      {cartItens.length > 0 ? (
+      {cartItens.length ? (
         cartItens.map((item) => {
           return (
             <div key={item.itemName} className="mini-card">

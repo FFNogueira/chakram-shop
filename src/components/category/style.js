@@ -4,6 +4,7 @@ import styled from 'styled-components';
 // Estilizando um parágrafo:
 // A constante exportada deve começar com letra miúscula:
 export const CategoryItem = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -11,20 +12,23 @@ export const CategoryItem = styled.div`
   width: 100%;
   height: 150px;
   border-radius: 5px;
-  background-color: grey;
   text-align: center;
-  color: floralwhite;
-  transition: transform 250ms ease-in-out;
+  overflow: hidden;
 
-  &:hover {
-    transform: scale(1.01);
-    cursor: pointer;
+  img{
+    object-position: center;
+    object-fit: cover;
+    width: 100%;
+    border-radius: 5px;
+    transition: transform 200ms ease-out;
   }
 
   .text {
+    position: absolute;
     background-color: #00000091;
     padding: 9px;
     border: 1px solid floralwhite;
+    z-index: 0;
 
     h2,
     p {
@@ -39,6 +43,15 @@ export const CategoryItem = styled.div`
 
     p {
       font-size: 13px;
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+
+    img{
+      transition: transform 3s ease-in;
+      transform: scale(1.1);
     }
   }
 
